@@ -49,23 +49,23 @@ export default function seedDatabaseIfNeeded() {
       .then(() => {
         Post.create({
         name:"Hiring Manager",
-        info:"best job",
+        info:"Gotta Hire them all",
         maxapp:3
       },{
         name:"HR",
-        info:"Cool Job",
+        info:"Human Resource",
         maxapp:5
       },{
         name:"Pune",
-        info:"Come Sit",
+        info:"Should i describe it",
         maxapp:2
       },{
         name:"CEO",
-        info:"Gotta Hire them all",
+        info:"Iron Throne is mine",
         maxapp:1
       },{
         name:"Software Engineer",
-        info:"??",
+        info:"I Can't Say Right!!!",
         maxapp:4
       })
         .then(() => console.log('finished populating Post'))
