@@ -1,0 +1,30 @@
+<header class="hero-unit" id="banner">
+  <div class="container">
+    <h1>'Job Portal'</h1>
+    <p class="lead">The right place for getting Jobs</p>
+    <img src="assets/images/job.png" alt="Jobs Available">
+  </div>
+</header>
+<br>
+<a href="./login">
+<p class="btn-success">Want to apply: Login to your account</p></a>
+<table class="table table-striped" style="margin-top: 10px;">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Name</th>
+      <th>Info</th>
+      <th>No-of-Vacancies</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="post in $ctrl.allposts">
+      <th >{{$index+1}}</th>
+      <td>{{post.name}}</td>
+      <td>{{post.info}}</td>
+      <td>{{post.maxapp}}</td>
+    </tr>
+  </tbody>
+</table>
+
+</div>
