@@ -77,7 +77,8 @@ DeletePost(index) {
     this.$http.post(`/api/userposts`,{
       userid:this.user._id,
       postid:post._id
-    })
+    });
+    this.$http.get(`/api/userposts/user/${post._id}`).then(response=>console.log(response));
   }
 }
 

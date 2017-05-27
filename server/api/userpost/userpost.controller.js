@@ -84,14 +84,14 @@ export function show(req, res) {
 }
 //Gets All post applicants by post:_id
 export function showuser(req, res) {
-  return Userpost.find({postid:req.params.id}).populate('User').exec()
+  return Userpost.find({postid:req.params.id}).populate('userid').exec()
     .then(handleEntityNotFound(res))
     .then(respondWithResult(res))
     .catch(handleError(res));
 }
 //Gets All user post requests by user:_id
 export function showpost(req, res) {
-  return Userpost.find({userid:req.params.id}).populate('Post').exec()
+  return Userpost.find({userid:req.params.id}).populate('postid').exec()
     .then(handleEntityNotFound(res))
     .then(respondWithResult(res))
     .catch(handleError(res));
