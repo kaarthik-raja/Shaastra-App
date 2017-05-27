@@ -47,6 +47,7 @@ export class PostComponent {
       });
       this.newpost = "";
       this.reset();
+      window.location.reload()
     }
   }
 EditPost(index){

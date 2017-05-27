@@ -6,12 +6,16 @@
  * PUT     /api/userposts/:id          ->  upsert
  * PATCH   /api/userposts/:id          ->  patch
  * DELETE  /api/userposts/:id          ->  destroy
+ * GET     /api/userposts/post/:id'    ->  showpost;
+ * GET     /api/userposts/user/:id'    ->  showuser;
  */
 
 'use strict';
 
 import jsonpatch from 'fast-json-patch';
 import Userpost from './userpost.model';
+import User from '../user/user.model';
+import Post from '../post/post.model';
 
 function respondWithResult(res, statusCode) {
   statusCode = statusCode || 200;
@@ -78,8 +82,21 @@ export function show(req, res) {
     .then(respondWithResult(res))
     .catch(handleError(res));
 }
-
-// Creates a new Userpost in the DB
+//Gets All post applicants by post:_id
+export function showuser(req, res) {
+  return Userpost.find({postid:req.params.id}).populate('User').exec()
+    .then(handleEntityNotFound(res))
+    .then(respondWithResult(res))
+    .catch(handleError(res));
+}
+//Gets All user post requests by user:_id
+export function showpost(req, res) {
+  return Userpost.find({userid:req.params.id}).populate('Post').exec()
+    .then(handleEntityNotFound(res))
+    .then(respondWithResult(res))
+    .catch(handleError(res));
+   } 
+ // Creates a new Userpost in the DB
 export function create(req, res) {
   return Userpost.create(req.body)
     .then(respondWithResult(res, 201))
