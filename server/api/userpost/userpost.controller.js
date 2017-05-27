@@ -84,7 +84,7 @@ export function show(req, res) {
 }
 //Gets All post applicants by post:_id
 export function showuser(req, res) {
-  return Userpost.find({postid:req.params.id}).populate('userid').exec()
+  return Userpost.find({postid:req.params.id}).populate('userid','_id name email role').exec()
     .then(handleEntityNotFound(res))
     .then(respondWithResult(res))
     .catch(handleError(res));
