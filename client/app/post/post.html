@@ -61,7 +61,7 @@
       <td>{{post.name}}</td>
       <td>{{post.info}}</td>
       <td >
-        <button class="btn btn-primary"  ng-click="$ctrl.Apply(post)" ng-hide="$ctrl.canApply(post)">Apply</button> 
+        <button class="btn btn-primary"  ng-click="$ctrl.Apply(post)" ng-disabled="$ctrl.canApply(post)">Apply</button> 
         <button class="btn btn-success" ng-show="isSelected(post)" >Selected</button>
       </td>
     </tr>

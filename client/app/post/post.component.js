@@ -16,17 +16,19 @@ export class PostComponent {
     this.socket = socket;
     this.isLoggedIn = Auth.isLoggedInSync;
     this.isAdmin = Auth.isAdminSync;
-    this.getCurrentUser = Auth.getCurrentUserSync;
+    this.CurrentUser = Auth.getCurrentUserSync;
 
     $scope.$on('$destroy', function() {
       socket.unsyncUpdates('post');
     });
   }
   $onInit() {
+
     this.$http.get('/api/posts')
       .then(response => {
         this.allposts = response.data;
         this.socket.syncUpdates('post', this.allposts);
+
       });
   }
   reset(){
@@ -48,11 +50,9 @@ export class PostComponent {
     }
   }
 EditPost(index){
-      console.log("Blah Blah Blah");
   // this.reset();
   this.post=this.allposts[index];
   this.post.edit=true;
-  console.log(post);
 }
 DeletePost(index) {
     this.post=this.allposts[index];
@@ -69,8 +69,14 @@ DeletePost(index) {
         info: post.info,
         maxapp: post.maxapp
       }).then((response)=>{this.reset(); });
-    
-  
+  }
+  Apply(post){
+    this.user=this.CurrentUser();
+    console.log(this.user);
+    this.$http.post(`/api/userposts`,{
+      userid:this.user._id,
+      postid:post._id
+    })
   }
 }
 

@@ -9,7 +9,7 @@ var UserpostSchema = new mongoose.Schema({
 userid:{type: mongoose.Schema.Types.ObjectId,
             ref: 'User'},
 postid:{type: mongoose.Schema.Types.ObjectId,
-            ref: 'post'},
+            ref: 'Post'},
 status:{
 	type: Boolean,default:false
 }
