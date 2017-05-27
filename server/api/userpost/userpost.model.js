@@ -2,11 +2,17 @@
 
 import mongoose from 'mongoose';
 import {registerEvents} from './userpost.events';
+import User from '../user/user.model';
+import Post from '../post/post.model';
 
 var UserpostSchema = new mongoose.Schema({
-  name: String,
-  info: String,
-  active: Boolean
+userid:{type: mongoose.Schema.Types.ObjectId,
+            ref: 'User'},
+postid:{type: mongoose.Schema.Types.ObjectId,
+            ref: 'post'},
+status:{
+	type: Boolean,default:false
+}
 });
 
 registerEvents(UserpostSchema);

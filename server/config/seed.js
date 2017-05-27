@@ -58,7 +58,7 @@ export default function seedDatabaseIfNeeded() {
       },{
         name:"Pune",
         info:"Should i describe it",
-        maxapp:2
+        maxapp:0
       },{
         name:"CEO",
         info:"Iron Throne is mine",

@@ -11,7 +11,7 @@ export class PostComponent {
   newpost=[];
   $http;
   socket;
-  constructor($http, $scope, socket,Auth) {
+  constructor($http, $scope, socket, Auth) {
     this.$http = $http;
     this.socket = socket;
     this.isLoggedIn = Auth.isLoggedInSync;

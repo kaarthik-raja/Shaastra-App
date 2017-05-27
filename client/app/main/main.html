@@ -6,9 +6,10 @@
   </div>
 </header>
 <br>
-<a href="./login">
+<div ng-hide="$ctrl.isLoggedIn()">
+<a  href="./login">
 <p class="btn-success">Want to apply: Login to your account</p></a>
-<table class="table table-striped" style="margin-top: 10px;">
+<table class="table table-striped"  style="margin-top: 10px;">
   <thead>
     <tr>
       <th>#</th>
@@ -26,5 +27,4 @@
     </tr>
   </tbody>
 </table>
-
 </div>

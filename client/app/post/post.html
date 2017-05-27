@@ -45,3 +45,26 @@
     </tr>
   </table>
 </div>
+<div ng-show="!($ctrl.isAdmin()) ">
+  <table class="table table-striped"  style="margin-top: 10px;">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Name</th>
+      <th>Info</th>
+      <th>Apply</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="post in $ctrl.allposts">
+      <th >{{$index+1}}</th>
+      <td>{{post.name}}</td>
+      <td>{{post.info}}</td>
+      <td >
+        <button class="btn btn-primary"  ng-click="$ctrl.Apply(post)" ng-hide="$ctrl.canApply(post)">Apply</button> 
+        <button class="btn btn-success" ng-show="isSelected(post)" >Selected</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
