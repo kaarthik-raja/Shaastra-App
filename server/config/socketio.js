@@ -18,7 +18,6 @@ function onConnect(socket) {
   // Insert sockets below
   require('../api/post/post.socket').register(socket);
   require('../api/userpost/userpost.socket').register(socket);
-  require('../api/thing/thing.socket').register(socket);
 }
 
 export default function(socketio) {
