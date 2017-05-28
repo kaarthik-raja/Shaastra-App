@@ -38,10 +38,13 @@ function patchUpdates(patches) {
 
 function removeEntity(res) {
   return function(entity) {
+    console.log(entity);
+
     if(entity) {
       return entity.remove()
         .then(() => {
           res.status(204).end();
+          return null;
         });
     }
   };

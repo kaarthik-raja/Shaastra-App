@@ -6,8 +6,10 @@
  * PUT     /api/userposts/:id          ->  upsert
  * PATCH   /api/userposts/:id          ->  patch
  * DELETE  /api/userposts/:id          ->  destroy
- * GET     /api/userposts/post/:id'    ->  showpost;
- * GET     /api/userposts/user/:id'    ->  showuser;
+ * GET     /api/userposts/post/:id     ->  showpost 
+ * GET     /api/userposts/user/:id     ->  showuser
+ * Get     /api/userposts/postuser/:userid/:postid -> showit
+ * DELETE  /api/userposts/user/:id     ->  deleteall  
  */
 
 'use strict';
@@ -16,6 +18,7 @@ import jsonpatch from 'fast-json-patch';
 import Userpost from './userpost.model';
 import User from '../user/user.model';
 import Post from '../post/post.model';
+
 
 function respondWithResult(res, statusCode) {
   statusCode = statusCode || 200;
@@ -96,6 +99,14 @@ export function showpost(req, res) {
     .then(respondWithResult(res))
     .catch(handleError(res));
    } 
+
+ //Gets Both User and Post
+export function showit(req, res) {
+  return Userpost.find({userid:req.params.userid,postid:req.params.postid}).exec()
+    .then(handleEntityNotFound(res))
+    .then(respondWithResult(res))
+    .catch(handleError(res));
+   }  
  // Creates a new Userpost in the DB
 export function create(req, res) {
   return Userpost.create(req.body)
@@ -133,3 +144,11 @@ export function destroy(req, res) {
     .then(removeEntity(res))
     .catch(handleError(res));
 }
+
+// Delete all user for a filled post from the DB
+// export function deleteall(req, res){
+//   return Userpost.find({postid:req.params.id}).exec()
+//     .then(handleEntityNotFound(res))
+//     .then(removeEntity(res))
+//     .catch(handleError(res));
+// }
