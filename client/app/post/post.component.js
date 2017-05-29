@@ -11,6 +11,7 @@ export class PostComponent {
   allposts=[];
   newpost=[];
   $http;
+  // curruser;
   applications=[];
 
   constructor($http, $scope, socket, Auth) {
@@ -20,8 +21,9 @@ export class PostComponent {
     this.isLoggedIn = Auth.isLoggedInSync;
     this.isAdmin = Auth.isAdminSync;
     this.CurrentUser = Auth.getCurrentUserSync;
+    this.curruser=this.CurrentUser();
+    // this.curruser=this.CurrentUser();
     this.i=0;
-    this.curr_usr_id=this.CurrentUser()._id;
     $scope.$on('$destroy', function() {
       socket.unsyncUpdates('post');
     });
@@ -34,35 +36,27 @@ export class PostComponent {
         this.socket.syncUpdates('post', this.allposts);
 
       });
-    
-    this.user=this.CurrentUser();
-    console.log(this.user._id);
-    console.log(curr_usr_id);
-    console.log("log of");
-    
-    this.$http.get(`/api/userposts/post/${this.user._id}`)
+      console.log(this.CurrentUser());
+    this.$http.get(`/api/userposts/post/${this.CurrentUser()._id}`)
       .then(response => {
         this.applications= response.data;
         this.socket.syncUpdates('userpost',this.applications);
-        console.log(this.applications);
-        console.log("app done");
-
-        for( this.i=0; i<this.applications.length;this.i++)
-          {
-            this.index= allposts.findIndex(x => x._id === this.applications[this.i].postid);
-            console.log(this.index);
-            if(this.index>=0)
-              { 
-                this.allposts[this.index].apply=true;
-                this.allposts[this.index].selected=this.applications[this.i].status;
-              }
-          }
-
       });
       console.log("inside onInit");
-    
-}
-  
+    for( this.i=0; i<this.applications.length;this.i++)
+    {
+      this.index= allposts.findIndex(x => x._id === this.applications[this.i].postid);
+      console.log(this.index);
+      if(this.index>=0)
+      {
+        this.allposts[this.index].apply=true;
+        this.allposts[this.index].selected=this.applications[this.i].status;
+      }
+
+
+    }
+
+  }
 
   reset(){
     this.$http.get('/api/posts')
@@ -109,11 +103,11 @@ DeletePost(index) {
     this.user=this.CurrentUser();
     this.allposts[index].apply=true;
     console.log(this.user);
-    this.$http.post(`/api/userposts`,{
+    this.$http.post(`/api/userposts/`,{
       userid:this.user._id,
       postid:this.post._id
     });
-    this.$http.get(`/api/userposts/user/${this.post._id}`).then(response=> {console.log(response)});
+    this.$http.get(`/api/userposts/user/${this.post._id}`).then(response=> {console.log("api/user/post"); console.log(response.data)});
   }
 
 }

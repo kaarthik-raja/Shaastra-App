@@ -1,4 +1,4 @@
-<header class="hero-unit" id="banner">
+<header class="hero-unit" id="banner" ng-init="setvalues()">
   <div class="container">
     <h1 ng-show="$ctrl.isAdmin()">CRUD the Jobs</h1>
     <h1 ng-hide="$ctrl.isAdmin()">Apply For Jobs</h1>
@@ -61,7 +61,7 @@
       <td>{{post.name}}</td>
       <td>{{post.info}}</td>
       <td >
-        <button class="btn btn-primary"  ng-click="$ctrl.Apply($index)" ng-disabled="post.apply">Apply</button> 
+        <button class="btn btn-primary"  ng-click="$ctrl.Apply($index)" >Apply</button> 
         <button class="btn btn-success" ng-show="post.selected" >Selected</button>
       </td>
     </tr>

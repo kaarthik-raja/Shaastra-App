@@ -23,13 +23,15 @@ import footer from '../components/footer/footer.component';
 import main from './main/main.component';
 import constants from './app.constants';
 import util from '../components/util/util.module';
+import selectuser from './selectuser/selectuser.component';
+
 import socket from '../components/socket/socket.service';
 import post from './post/post.component';
 
 import './app.css';
 
 angular.module('yoApp', [ngCookies, ngResource, ngSanitize, 'btford.socket-io', uiRouter,
-  uiBootstrap, _Auth, account, admin, post,'validation.match', navbar, footer, main, constants,
+  uiBootstrap, _Auth, account, admin, selectuser, post,'validation.match', navbar, footer, main, constants,
   socket, util
 ])
   .config(routeConfig)

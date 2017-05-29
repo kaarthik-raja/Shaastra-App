@@ -6,6 +6,7 @@
 'use strict';
 import User from '../api/user/user.model';
 import config from './environment/';
+import Userpost from '../api/userpost/userpost.model';
 import Post from '../api/post/post.model';
 export default function seedDatabaseIfNeeded() {
   if(config.seedDB) {
@@ -36,6 +37,7 @@ export default function seedDatabaseIfNeeded() {
         .then(() => console.log('finished populating Post'))
         .catch(err => console.log('error populating Post', err));
        });
+    Userpost.find({}).remove().then(()=>console.log("Fresh post"));
     User.find({}).remove()
       .then(() => {
         User.create({
