@@ -73,7 +73,7 @@ function handleError(res, statusCode) {
 
 // Gets a list of Userposts
 export function index(req, res) {
-  return Userpost.find().populate('userid ','_id name email role ').populate('postid','_id maxapp').exec()
+  return Userpost.find().populate('userid ','_id name email role ').populate('postid','_id maxapp name').exec()
     .then(respondWithResult(res))
     .catch(handleError(res));
 }

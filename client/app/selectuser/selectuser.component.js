@@ -43,6 +43,7 @@ export class SelectuserComponent {
       });
   }
   Approve(appli){
+    if(appli.postid.maxapp>0){
     this.$http.put(`/api/userposts/${appli._id}`,{
 
       status:true
@@ -52,7 +53,10 @@ export class SelectuserComponent {
       maxapp:appli.postid.maxapp
     }).then((response)=> {console.log(response.data);console.log("maxpost changed");
     });
-
+  }
+  else{
+    console.log("Reached limit");
+  }
   }
 
   Delete(appli){
