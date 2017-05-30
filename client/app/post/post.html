@@ -47,8 +47,10 @@
     </tr>
   </table>
 </div>
-<div ng-show="!($ctrl.isAdmin()) ">
-<button ng-click="selectedpost=!selectedpost" class="btn btn-info" style="margin: 10px">Toggle</button>
+<div ng-show="(!($ctrl.isAdmin()) && !showed)" class="center"> <button class ="btn btn-warning " ng-dblclick="showed=!showed" ng-click="$ctrl.loadpost()">Load Page:doubleclick</button></div>
+<!-- Sorry I Dint Find the Necessary function to do this process at the required time i could do some ng-onchange after oninit but will cause server load and it is front end , i handled requests of this properly -->
+<div ng-show="(!($ctrl.isAdmin()) && showed)">
+<!-- <button ng-click="$ctrl.loadpost() " class="btn btn-info" style="margin: 10px">Load</button> -->
   <table class="table table-striped" ng-hide="selectedpost" style="margin-top: 10px;">
   <thead>
     <tr>
@@ -64,26 +66,17 @@
       <td>{{post.name}}</td>
       <td>{{post.info}}</td>
       <td >
-        <button class="btn btn-primary" ng-click="$ctrl.Apply($index)" ng-disabled="{{post.maxapp<1?true:false}}" ng- >Apply</button> 
+        <button class="btn btn-primary" ng-click="$ctrl.Apply($index)" ng-disabled="{{post.maxapp<1?true:false}}"  ng-hide="post.apply"=>Apply</button> 
+        <button class="btn btn-success" ng-show="post.selected ">Selected</button>
+        <button class="btn btn-info" ng-hide="(post.selected || !post.apply)" >Pending</button>
+        <!-- <button class="btn btn-danger" ng-hide="(post.selected || !post.apply)" ng-click="$ctrl.deleteapp($index)">Cancel</button> -->
+        <!-- the delete is working but refresh took too much time -->
       </td>
     </tr>
   </tbody>
-</table>
-  <table class="table table-striped" ng-show="selectedpost" style="margin-top: 10px;">
-  <thead>
-    <tr>
-      <th>#</th>
-      <th>Name</th>
-      <th>Info</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr ng-repeat="post in $ctrl.allposts" style="color:{{post.maxapp<1?'red':'black'}}">
-      <th >{{$index+1}}</th>
-      <td>{{post.name}}</td>
-      <td>{{post.info}}</td>
-    </tr>
-  </tbody>
-</table>
+  </table>
+  <span class="label label-warning">Schema</span>
+  <span class="label label-info"><span style="color: red"> color: red </span> Vacancy:0</span>     
+  <span class="label label-info">Welcome</span> 
 
 </div>
