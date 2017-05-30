@@ -58,12 +58,12 @@
     </tr>
   </thead>
   <tbody>
-    <tr ng-repeat="post in $ctrl.allposts" >
+    <tr ng-repeat="post in $ctrl.allposts" style="color:{{post.maxapp<1?'red':'black'}}">
       <th >{{$index+1}}</th>
       <td>{{post.name}}</td>
       <td>{{post.info}}</td>
       <td >
-        <button class="btn btn-primary"  ng-click="$ctrl.Apply($index)" >Apply</button> 
+        <button class="btn btn-primary"  ng-click="$ctrl.Apply($index)" ng-disabled="{{post.maxapp<1?true:false}}" ng- >Apply</button> 
         <button class="btn btn-success" ng-show="post.selected" >Selected</button>
       </td>
     </tr>

@@ -26,7 +26,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr ng-repeat="appli in $ctrl.applications | filter:{postid:{_id:$ctrl.selectedpost._id}}"  >
+    <tr ng-repeat="appli in $ctrl.applications | filter:{postid:{_id:$ctrl.selectedpost._id}} | orderBy:'postid.name'"  >
       <th >{{$index+1}}</th>
       <td>{{appli.userid.name}}</td>
       <td>{{appli.postid.name}}</td>
