@@ -47,7 +47,7 @@
     </tr>
   </table>
 </div>
-<div ng-show="(!($ctrl.isAdmin()) && !showed)" class="center"> <button class ="btn btn-warning " ng-dblclick="showed=!showed" ng-click="$ctrl.loadpost()">Load Page:doubleclick</button></div>
+<div ng-show="(!($ctrl.isAdmin()) && !showed)" class="center">  <button class ="btn btn-danger btn-lg " uib-tooltip="doubleclick" ng-dblclick="showed=!showed" ng-click="$ctrl.loadpost()">Agree for the Terms of Website</button></div>
 <!-- Sorry I Dint Find the Necessary function to do this process at the required time i could do some ng-onchange after oninit but will cause server load and it is front end . -->
 <div ng-show="(!($ctrl.isAdmin()) && showed)">
 <!-- <button ng-click="$ctrl.loadpost() " class="btn btn-info" style="margin: 10px">Load</button> -->

@@ -28,7 +28,7 @@
   <tbody>
     <tr ng-repeat="appli in $ctrl.applications | filter:{postid:{_id:$ctrl.selectedpost._id}} | orderBy:'postid.name'"  >
       <th >{{$index+1}}</th>
-      <td uib-tooltip="{{appli.userid.email}}">{{appli.userid.name}}</td>
+      <td >{{appli.userid.name}}</td>
       <td>{{appli.postid.name}}</td>
       <td>{{appli.postid.maxapp}}</td>
       <td >

@@ -36,7 +36,7 @@ export class PostComponent {
         this.socket.syncUpdates('post', this.allposts);
 
       });
-      console.log(this.CurrentUser());
+      // console.log(this.CurrentUser());
     // this.$http.get(`/api/userposts/post/${this.CurrentUser()._id}`)
     //   .then(response => {
     //     this.applications= response.data;
@@ -102,7 +102,7 @@ DeletePost(index) {
     this.post=this.allposts[index];
     this.user=this.CurrentUser();
     this.allposts[index].apply=true;
-    console.log(this.user);
+    // console.log(this.user);
     this.$http.post(`/api/userposts/`,{
       userid:this.user._id,
       postid:this.post._id
@@ -117,7 +117,7 @@ DeletePost(index) {
         this.applications= response.data;
         this.socket.syncUpdates('userpost',this.applications);
       });
-      console.log("beforeloop");
+      // console.log("beforeloop");
   console.log(this.allposts);
       for( this.i=0; this.i<this.applications.length;this.i++)
     {
@@ -136,7 +136,7 @@ DeletePost(index) {
         this.allposts[this.index].selected=this.applications[this.i].status;
       }
     }
-    console.log(this.allposts);
+    // console.log(this.allposts);
 }
     // deleteapp(index){
     //   this.post=this.allposts[index];
