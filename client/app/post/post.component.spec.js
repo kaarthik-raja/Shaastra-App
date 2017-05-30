@@ -1,8 +1,8 @@
 'use strict';
 
-import post from './game.component';
+import post from './post.component';
 import {
-  PostComponent } from './game.component';
+  PostComponent } from './post.component';
 
 describe('Component: PostComponent', function() {
   beforeEach(angular.mock.module(post));
@@ -19,7 +19,7 @@ describe('Component: PostComponent', function() {
     socket) {
     $httpBackend = _$httpBackend_;
     $httpBackend.expectGET('/api/posts')
-      .respond(['HTML5 Boilerplate', 'AngularJS', 'Karma', 'Express']);
+      .respond(['ceo', 'manager', 'Soft dev', 'coord']);
 
     scope = $rootScope.$new();
     state = $state;

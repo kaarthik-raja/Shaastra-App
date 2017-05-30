@@ -73,14 +73,14 @@ function handleError(res, statusCode) {
 
 // Gets a list of Userposts
 export function index(req, res) {
-  return Userpost.find().exec()
+  return Userpost.find().populate('userid ','_id name email role ').populate('postid','_id maxapp').exec()
     .then(respondWithResult(res))
     .catch(handleError(res));
 }
 
 // Gets a single Userpost from the DB
 export function show(req, res) {
-  return Userpost.findById(req.params.id).exec()
+  return Userpost.findById(req.params.id).populate('userid','_id name email role').exec()
     .then(handleEntityNotFound(res))
     .then(respondWithResult(res))
     .catch(handleError(res));

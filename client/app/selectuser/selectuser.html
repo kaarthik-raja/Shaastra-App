@@ -1,1 +1,38 @@
-<div>This is the selectuser view.</div>
+<header class="hero-unit" id="banner" ng-init="setvalues()">
+  <div class="container">
+    <h1>Select the Jobs</h1>
+
+  </div>
+</header>
+<div class="center">
+<div ng-init="$ctrl.selectedpost=null" class=" btn-group">
+<br>
+  <button class="btn btn-primary "  ng-repeat="post in $ctrl.allposts" ng-click="$ctrl.selectedpost=post" >{{post.name}}</button>
+<br>
+</div>
+</div>
+<div class="container">
+  <table class="table table-striped"  style="margin-top: 10px;">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Select/Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="appli in $ctrl.applications " >
+      <th >{{$index+1}}</th>
+      <td>{{appli.userid.name}}</td>
+      <td>{{appli.userid.email}}</td>
+      <td >
+        <button class="btn btn-primary"  ng-click="$ctrl.Approve(appli)" >Select</button> 
+      </td>
+      <td>
+        <button class="btn btn-success" ng-click="$ctrl.Delete(appli)" >Reject</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
