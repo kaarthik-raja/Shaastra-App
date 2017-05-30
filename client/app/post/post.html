@@ -63,7 +63,7 @@
       <td>{{post.name}}</td>
       <td>{{post.info}}</td>
       <td >
-        <button class="btn btn-primary"  ng-click="$ctrl.Apply($index)" ng-disabled="{{post.maxapp<1?true:false}}" ng- >Apply</button> 
+        <button class="btn btn-primary" ng-hide="post.selected"  ng-click="$ctrl.Apply($index)" ng-disabled="{{post.maxapp<1?true:false}}" ng- >Apply</button> 
         <button class="btn btn-success" ng-show="post.selected" >Selected</button>
       </td>
     </tr>

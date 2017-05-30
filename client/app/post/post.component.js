@@ -92,11 +92,12 @@ DeletePost(index) {
     this.reset();
   }
   SavePost(post){
+    console.log(post);
     this.$http.put(`/api/posts/${post._id}`, {
         name: post.name,
         info: post.info,
         maxapp: post.maxapp
-      }).then((response)=>{this.reset(); });
+      }).then((response)=>{console.log(response.data); this.reset(); });
   }
   Apply(index){
     this.post=this.allposts[index];

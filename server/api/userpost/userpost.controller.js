@@ -64,6 +64,28 @@ function handleEntityNotFound(res) {
   };
 }
 
+function handleEntityFound(res) {
+  return function(entity) {
+    if(entity) {
+      res.status(208).end();
+      return null;
+    }
+    return entity;
+  };
+}
+function handleEntityCreate(req,res) {
+  return function(entity) {
+    if(entity.length<1) {
+        return Userpost.create(req.body)
+          .then(()=> {
+            res.status(207).end();
+            return null;
+          });
+    }
+    return entity;
+  };
+}
+
 function handleError(res, statusCode) {
   statusCode = statusCode || 500;
   return function(err) {
@@ -109,7 +131,9 @@ export function showit(req, res) {
    }  
  // Creates a new Userpost in the DB
 export function create(req, res) {
-  return Userpost.create(req.body)
+  return Userpost.find({userid:req.body.userid,postid:req.body.postid})
+    .then(handleEntityCreate(req,res))
+    .then(handleEntityFound(res))
     .then(respondWithResult(res, 201))
     .catch(handleError(res));
 }

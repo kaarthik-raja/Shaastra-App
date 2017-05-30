@@ -24,14 +24,16 @@ function respondWithResult(res, statusCode) {
 }
 
 function patchUpdates(patches) {
+  console.log(patches,"function");
   return function(entity) {
+    console.log(entity);
     try {
       // eslint-disable-next-line prefer-reflect
       jsonpatch.apply(entity, patches, /*validate*/ true);
     } catch(err) {
       return Promise.reject(err);
     }
-
+    console.log(entity);
     return entity.save();
   };
 }
@@ -104,7 +106,7 @@ export function upsert(req, res) {
 export function patch(req, res) {
   if(req.body._id) {
     Reflect.deleteProperty(req.body, '_id');
-  }
+  }console.log(req.body);
   return Post.findById(req.params.id).exec()
     .then(handleEntityNotFound(res))
     .then(patchUpdates(req.body))
