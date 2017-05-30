@@ -6,7 +6,7 @@
   </div>
 </header>
  <div class="container" ng-show="$ctrl.isAdmin()" >
-  <br><a href="./selectuser"><button class="btn btn-primary">Select Jobs</button></a><br>
+  <!-- <br><a href="./selectuser"><button class="btn btn-primary">Select Jobs</button></a><br> -->
 
   <table class="table table-striped">
     <thead>
@@ -48,7 +48,7 @@
   </table>
 </div>
 <div ng-show="(!($ctrl.isAdmin()) && !showed)" class="center"> <button class ="btn btn-warning " ng-dblclick="showed=!showed" ng-click="$ctrl.loadpost()">Load Page:doubleclick</button></div>
-<!-- Sorry I Dint Find the Necessary function to do this process at the required time i could do some ng-onchange after oninit but will cause server load and it is front end , i handled requests of this properly -->
+<!-- Sorry I Dint Find the Necessary function to do this process at the required time i could do some ng-onchange after oninit but will cause server load and it is front end . -->
 <div ng-show="(!($ctrl.isAdmin()) && showed)">
 <!-- <button ng-click="$ctrl.loadpost() " class="btn btn-info" style="margin: 10px">Load</button> -->
   <table class="table table-striped" ng-hide="selectedpost" style="margin-top: 10px;">
