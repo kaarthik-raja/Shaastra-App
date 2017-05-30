@@ -37,24 +37,24 @@ export class PostComponent {
 
       });
       console.log(this.CurrentUser());
-    this.$http.get(`/api/userposts/post/${this.CurrentUser()._id}`)
-      .then(response => {
-        this.applications= response.data;
-        this.socket.syncUpdates('userpost',this.applications);
-      });
-      console.log("inside onInit");
-    for( this.i=0; i<this.applications.length;this.i++)
-    {
-      this.index= allposts.findIndex(x => x._id === this.applications[this.i].postid);
-      console.log(this.index);
-      if(this.index>=0)
-      {
-        this.allposts[this.index].apply=true;
-        this.allposts[this.index].selected=this.applications[this.i].status;
-      }
+    // this.$http.get(`/api/userposts/post/${this.CurrentUser()._id}`)
+    //   .then(response => {
+    //     this.applications= response.data;
+    //     this.socket.syncUpdates('userpost',this.applications);
+    //   });
+    //   console.log("inside onInit");
+    // for( this.i=0; i<this.applications.length;this.i++)
+    // {
+    //   this.index= allposts.findIndex(x => x._id === this.applications[this.i].postid);
+    //   console.log(this.index);
+    //   if(this.index>=0)
+    //   {
+    //     this.allposts[this.index].apply=true;
+    //     this.allposts[this.index].selected=this.applications[this.i].status;
+    //   }
 
 
-    }
+    // }
 
   }
 

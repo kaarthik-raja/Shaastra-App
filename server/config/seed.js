@@ -22,7 +22,7 @@ export default function seedDatabaseIfNeeded() {
         info:"Human Resource",
         maxapp:5
       },{
-        name:"Pune",
+        name:"Random Job",
         info:"Should i describe it",
         maxapp:0
       },{
@@ -30,7 +30,7 @@ export default function seedDatabaseIfNeeded() {
         info:"Iron Throne is mine",
         maxapp:1
       },{
-        name:"Software Engineer",
+        name:"Backend Dev",
         info:"I Can't Say Right!!!",
         maxapp:4
       })

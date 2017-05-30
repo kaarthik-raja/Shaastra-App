@@ -5,13 +5,13 @@
   </div>
 </header>
 <div class="center">
-<div ng-init="$ctrl.selectedpost=$ctr.allposts[0]" class=" btn-group">
+<div ng-init="$ctrl.selectedpost=null" class=" btn-group">
 <br>
+  <button class="btn btn-success" ng-click="$ctrl.selectedpost=''">All</button>
   <button class="btn btn-primary "  ng-repeat="post in $ctrl.allposts" ng-click="$ctrl.selectedpost=post" >{{post.name}}</button>
 <br>
 
 </div>
-<pre>{{$ctrl.selectedpost.name}}</pre>
 </div>
 <div class="container">
   <table class="table table-striped"  style="margin-top: 10px;">
@@ -26,7 +26,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr ng-repeat="appli in $ctrl.applications | filter:{postid:{:'HR'}}"  >
+    <tr ng-repeat="appli in $ctrl.applications | filter:{postid:{_id:$ctrl.selectedpost._id}} | orderBy:'postid.name'"  >
       <th >{{$index+1}}</th>
       <td>{{appli.userid.name}}</td>
       <td>{{appli.postid.name}}</td>
