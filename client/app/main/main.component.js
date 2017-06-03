@@ -5,14 +5,11 @@ import routing from './main.routes';
 export class MainController {
   allposts = [];
   // newThing = '';
-// 
   /*@ngInject*/
   constructor($http, $scope, socket, Auth) {
     this.$http = $http;
     this.socket = socket;
     this.isLoggedIn = Auth.isLoggedInSync;
-    
-
     $scope.$on('$destroy', function() {
       socket.unsyncUpdates('thing');
     });

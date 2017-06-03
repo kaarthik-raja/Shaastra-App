@@ -16,9 +16,6 @@
 
 import jsonpatch from 'fast-json-patch';
 import Userpost from './userpost.model';
-import User from '../user/user.model';
-import Post from '../post/post.model';
-
 
 function respondWithResult(res, statusCode) {
   statusCode = statusCode || 200;
@@ -76,10 +73,11 @@ function handleEntityFound(res) {
 function handleEntityCreate(req,res) {
   return function(entity) {
     if(entity.length<1) {
-        return Userpost.create(req.body)
+        return Userpost.create( req.body)
           .then(()=> {
-            res.status(207).end();
-            return null;
+            res.status(207)
+            .end();
+          return null;
           });
     }
     return entity;
@@ -95,7 +93,7 @@ function handleError(res, statusCode) {
 
 // Gets a list of Userposts
 export function index(req, res) {
-  return Userpost.find().populate('userid ','_id name email role ').populate('postid','_id maxapp name').exec()
+  return Userpost.find().populate('userid ', '_id name email role ').populate('postid','_id maxapp name').exec()
     .then(respondWithResult(res))
     .catch(handleError(res));
 }
@@ -131,8 +129,8 @@ export function showit(req, res) {
    }  
  // Creates a new Userpost in the DB
 export function create(req, res) {
-  return Userpost.find({userid:req.body.userid,postid:req.body.postid})
-    .then(handleEntityCreate(req,res))
+  return Userpost.find({userid:req.body.userid, postid:req.body.postid})
+    .then(handleEntityCreate(req, res))
     .then(handleEntityFound(res))
     .then(respondWithResult(res, 201))
     .catch(handleError(res));

@@ -31,7 +31,7 @@ import post from './post/post.component';
 import './app.css';
 
 angular.module('yoApp', [ngCookies, ngResource, ngSanitize, 'btford.socket-io', uiRouter,
-  uiBootstrap, _Auth, account, admin, selectuser, post,'validation.match', navbar, footer, main, constants,
+  uiBootstrap, _Auth, account, admin, selectuser, post, 'validation.match', navbar, footer, main, constants,
   socket, util
 ])
   .config(routeConfig)
