@@ -5,7 +5,7 @@ export default function($stateProvider) {
   $stateProvider
     .state('selectuser', {
       url: '/selectuser',
-      template: '<selectuser></selectuser>', 
-      authenticate:"admin"
+      template: '<selectuser></selectuser>',
+      authenticate: 'admin'
     });
 }

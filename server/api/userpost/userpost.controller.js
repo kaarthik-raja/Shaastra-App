@@ -6,10 +6,10 @@
  * PUT     /api/userposts/:id          ->  upsert
  * PATCH   /api/userposts/:id          ->  patch
  * DELETE  /api/userposts/:id          ->  destroy
- * GET     /api/userposts/post/:id     ->  showpost 
+ * GET     /api/userposts/post/:id     ->  showpost
  * GET     /api/userposts/user/:id     ->  showuser
  * Get     /api/userposts/postuser/:userid/:postid -> showit
- * DELETE  /api/userposts/user/:id     ->  deleteall  
+ * DELETE  /api/userposts/user/:id     ->  deleteall
  */
 
 'use strict';
@@ -70,15 +70,15 @@ function handleEntityFound(res) {
     return entity;
   };
 }
-function handleEntityCreate(req,res) {
+function handleEntityCreate(req, res) {
   return function(entity) {
-    if(entity.length<1) {
-        return Userpost.create( req.body)
-          .then(()=> {
-            res.status(207)
-            .end();
+    if(entity.length < 1) {
+      return Userpost.create(req.body)
+        .then(() => {
+          res.status(207)
+          .end();
           return null;
-          });
+        });
     }
     return entity;
   };
@@ -93,43 +93,49 @@ function handleError(res, statusCode) {
 
 // Gets a list of Userposts
 export function index(req, res) {
-  return Userpost.find().populate('userid ', '_id name email role ').populate('postid','_id maxapp name').exec()
+  return Userpost.find()
+    .populate('userid ', '_id name email role ')
+    .populate('postid', '_id maxapp name')
+    .exec()
     .then(respondWithResult(res))
     .catch(handleError(res));
 }
 
 // Gets a single Userpost from the DB
 export function show(req, res) {
-  return Userpost.findById(req.params.id).populate('userid','_id name email role').exec()
+  return Userpost.findById(req.params.id).populate('userid', '_id name email role')
+    .exec()
     .then(handleEntityNotFound(res))
     .then(respondWithResult(res))
     .catch(handleError(res));
 }
 //Gets All post applicants by post:_id
 export function showuser(req, res) {
-  return Userpost.find({postid:req.params.id}).populate('userid','_id name email role').exec()
+  return Userpost.find({postid: req.params.id}).populate('userid', '_id name email role')
+    .exec()
     .then(handleEntityNotFound(res))
     .then(respondWithResult(res))
     .catch(handleError(res));
 }
 //Gets All user post requests by user:_id
 export function showpost(req, res) {
-  return Userpost.find({userid:req.params.id}).populate('postid').exec()
+  return Userpost.find({userid: req.params.id})
+    .populate('postid')
+    .exec()
     .then(handleEntityNotFound(res))
     .then(respondWithResult(res))
     .catch(handleError(res));
-   } 
-
+}
  //Gets Both User and Post
 export function showit(req, res) {
-  return Userpost.find({userid:req.params.userid,postid:req.params.postid}).exec()
+  return Userpost.find({userid: req.params.userid, postid: req.params.postid}).exec()
     .then(handleEntityNotFound(res))
     .then(respondWithResult(res))
     .catch(handleError(res));
-   }  
+}
  // Creates a new Userpost in the DB
 export function create(req, res) {
-  return Userpost.find({userid:req.body.userid, postid:req.body.postid})
+  return Userpost.find({userid: req.body.userid, postid: req.body.postid})
     .then(handleEntityCreate(req, res))
     .then(handleEntityFound(res))
     .then(respondWithResult(res, 201))

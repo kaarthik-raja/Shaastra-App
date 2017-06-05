@@ -6,6 +6,6 @@ export default function($stateProvider) {
     .state('post', {
       url: '/post',
       template: '<post></post>',
-      authenticate:true
+      authenticate: true
     });
 }
