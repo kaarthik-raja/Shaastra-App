@@ -38,14 +38,18 @@ export class SelectuserComponent {
       this.$http.put(`/api/userposts/${appli._id}`, {
         status: true
       });
-      appli.postid.maxapp -= 1;
-      this.$http.put(`/api/posts/${appli.postid._id}`, {
-        maxapp: appli.postid.maxapp
+      this.$http.put(`/api/posts/selection/${appli.postid._id}`, {
+        vacancy: -1
       });
     }
   }
   Delete(appli) {
     this.$http.delete(`api/userposts/${appli._id}`);
+    if(appli.status == true) {
+      this.$http.put(`/api/posts/selection/${appli.postid._id}`, {
+        vacancy: 1
+      });
+    }
   }
 }
 

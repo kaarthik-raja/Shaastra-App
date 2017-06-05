@@ -19,6 +19,7 @@ export class PostComponent {
     this.CurrentUser = Auth.getCurrentUserSync;
     this.curruser = this.CurrentUser();
     // this.curruser=this.CurrentUser();
+
     this.i = 0;
     this.j = 0;
     $scope.$on('$destroy', function() {
@@ -31,7 +32,8 @@ export class PostComponent {
         this.allposts = response.data;
         this.socket.syncUpdates('post', this.allposts);
       });
-      // console.log(this.CurrentUser());
+    console.log(this.curruser);
+
     // this.$http.get(`/api/userposts/post/${this.CurrentUser()._id}`)
     //   .then(response => {
     //     this.applications= response.data;

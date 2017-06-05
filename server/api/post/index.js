@@ -11,5 +11,6 @@ router.post('/', controller.create);
 router.put('/:id', controller.upsert);
 router.patch('/:id', controller.patch);
 router.delete('/:id', controller.destroy);
+router.put('/selection/:id', controller.vacdown);
 
 module.exports = router;
